@@ -2,7 +2,7 @@
 #define ADC_H_
 
 #define ADC_NUMBER_OF_CONVERSIONS_CYCLES 20
-#define ADC_ENGINE_OVERCURRENT           255
+#define ADC_ENGINE_OVERCURRENT           140
 
 extern uint8_t adcConversionCounter;
 extern uint16_t adcBuffer[ADC_NUMBER_OF_CONVERSIONS_CYCLES];

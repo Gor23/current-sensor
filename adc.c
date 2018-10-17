@@ -12,6 +12,7 @@ void ADC_Init(void);
 uint16_t ADC_GetConversionValue(void);
 void ADC_CalculateResult(void);
 void ADC_StartConversionCycle(void);
+void ADC_ClearBuffer(void);
 void ADC_EmptyFunction(void);
 
 void ADC_Init(void)
@@ -22,17 +23,19 @@ void ADC_Init(void)
   ADC_CSR_CH = CURRENT_CHANEL;
   //prescaler 18
   ADC_CR1_SPSEL = 7;
-  
-  
+  //right aligment
+  ADC_CR2_ALIGN = true;
+    
   ADC_TDRL &= (uint8_t)(~(uint8_t)((uint8_t)0x01 << (uint8_t)CURRENT_CHANEL));
   ADC_TDRL &= (uint8_t)(~(uint8_t)((uint8_t)0x01 << (uint8_t)VOLTAGE_CHANEL));
+  //first set = wake up adc
+  ADC_CR1_ADON = true;
   
   ADC_Function = &ADC_EmptyFunction;
 }
 
 void ADC_StartConversion(void)
 {
-  ADC_CR1_ADON = true;
   ADC_CR1_ADON = true;
 }
 
@@ -48,7 +51,7 @@ uint16_t ADC_GetConversionValue(void)
     /* Then read MSB */
     temph = ADC_DRH;
 
-    temph = (uint16_t)(templ | (uint16_t)(temph << (uint8_t)8));
+    temph = (uint16_t)(templ | ((uint16_t)(temph << (uint8_t)8)));
   }
   else /* Left alignment */
   {
@@ -90,10 +93,21 @@ void ADC_CalculateResult(void)
     {
       ENGC_ChangeState(ENGC_B_FAULT_END_MOVE);
     }
+  }else
+  {
+    ADC_CR1_ADON = true;
   }
+  ADC_ClearBuffer();
   adcDataReady = true;
 }
-
+void ADC_ClearBuffer(void)
+{
+  adcConversionCounter = 0;
+  for(uint8_t i=0; i<ADC_NUMBER_OF_CONVERSIONS_CYCLES; i++)
+  {
+    adcBuffer[i] = 0;
+  }
+}  
 void ADC_EmptyFunction(void)
 {
   adc_timeToRunFunction = 5000;
@@ -101,12 +115,7 @@ void ADC_EmptyFunction(void)
 
 void ADC_StartConversionCycle(void)
 {
-  adcConversionCounter = 0;
+  ADC_ClearBuffer();
   adcDataReady = false;
   ADC_StartConversion();
-}
-
-void ADC_StopConversionCycle(void)
-{
-  ADC_CR1_ADON = false;
 }

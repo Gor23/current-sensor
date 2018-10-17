@@ -264,7 +264,6 @@ void ENGC_StateManager(void)
     
    case ENGC_B_FAULT_END_MOVE:
     MOSFET_OFF;
-    ADC_StopConversionCycle();
     ENGC_SetPrevState();
     ENGC_ChangeState(ENGC_B_BLOCK);
     engc_TimeToRunFunction = ENGC_FROM_MOVE_TO_END_POLLTIME;
@@ -272,7 +271,6 @@ void ENGC_StateManager(void)
     
    case ENGC_F_FAULT_END_MOVE:
     MOSFET_OFF;
-    ADC_StopConversionCycle();
     ENGC_SetPrevState();
     ENGC_ChangeState(ENGC_F_BLOCK);
     engc_TimeToRunFunction = ENGC_FROM_MOVE_TO_END_POLLTIME;
@@ -280,7 +278,6 @@ void ENGC_StateManager(void)
     
    case ENGC_B_END_MOVE:
     MOSFET_OFF;
-    ADC_StopConversionCycle();
     ENGC_SetPrevState();
     ENGC_ChangeState(ENGC_STOP);
     engc_TimeToRunFunction = ENGC_FROM_MOVE_TO_END_POLLTIME;
@@ -288,7 +285,6 @@ void ENGC_StateManager(void)
     
   case ENGC_F_END_MOVE:
     MOSFET_OFF;
-    ADC_StopConversionCycle();
     ENGC_SetPrevState();
     ENGC_ChangeState(ENGC_STOP);
     engc_TimeToRunFunction = ENGC_FROM_MOVE_TO_END_POLLTIME;

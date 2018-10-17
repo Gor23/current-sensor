@@ -9,7 +9,7 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [DebugChecksum]
-Checksum=-1660868804
+Checksum=1729329628
 [CodeCoverage]
 Enabled=_ 0
 [CallStack]
@@ -67,9 +67,7 @@ Category=_ 0
 LoggingEnabled=_ 0
 LogFile=_ ""
 [Breakpoints]
-Bp0=_ "STD_CODE" "{$PROJ_DIR$\adc.c}.76.3" 1 0 0 0 "" 0 ""
-Bp1=_ "STD_CODE" "{$PROJ_DIR$\main.c}.35.5" 1 0 0 0 "" 0 ""
-Count=2
+Count=0
 [Aliases]
 A0=_ "E:\Dropbox\stm8_projects\current_sensor\main.c" ""
 Count=1

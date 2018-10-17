@@ -28,6 +28,7 @@ __interrupt void adcHandler(void)
   {
    adcBuffer[adcConversionCounter] = ADC_GetConversionValue();
    adcConversionCounter++;
+   ADC_CR1_ADON = true;
   }
   else
   {
