@@ -5,10 +5,11 @@
 
 
 #define ENGC_FROM_START_TO_MOVE_POLLTIME        20
-#define ENGC_MOVE_POLLTIME                      (uint16_t)4000
+#define ENGC_MOVE_POLLTIME                      (uint16_t)4500
 #define ENGC_FROM_MOVE_TO_END_POLLTIME          20
 #define ENGC_BLOCK_POLLTIME                     (uint16_t)5000
 #define ENGC_IDLE_POLLTIME                      (uint16_t)100
+#define ENGC_ADC_START_DELAY                    150
 
 enum ENGC_STATES
 {

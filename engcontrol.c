@@ -248,7 +248,7 @@ void ENGC_StateManager(void)
     
    case ENGC_F_MOVE:
     MOSFET_ON;
-    ADC_StartConversionCycle();
+    ADC_RunAdcWithDelay(ENGC_ADC_START_DELAY);
     ENGC_SetPrevState();
     ENGC_ChangeState(ENGC_F_FAULT_END_MOVE);
     engc_TimeToRunFunction = ENGC_MOVE_POLLTIME;
@@ -256,7 +256,7 @@ void ENGC_StateManager(void)
     
    case ENGC_B_MOVE:
     MOSFET_ON;
-    ADC_StartConversionCycle();
+    ADC_RunAdcWithDelay(ENGC_ADC_START_DELAY);
     ENGC_SetPrevState();
     ENGC_ChangeState(ENGC_B_FAULT_END_MOVE);
     engc_TimeToRunFunction = ENGC_MOVE_POLLTIME;

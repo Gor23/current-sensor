@@ -16,7 +16,7 @@ __interrupt void systickHandler(void)
   if(timeToRunLedHandler) timeToRunLedHandler--;
   if(engc_TimeToRunFunction) engc_TimeToRunFunction--;
   if(adc_timeToRunFunction) adc_timeToRunFunction--;
-  
+  if(adc_timeToRunDelayFunction) adc_timeToRunDelayFunction--;
   TIM4_SR_UIF = false; 
 }
 
@@ -55,6 +55,7 @@ int main( void )
     if(!button_timeToRunFunction) BUTTON_Manager();
     if(!engc_TimeToRunFunction) ENGC_StateManager();
     if(!adc_timeToRunFunction) (*ADC_Function)();
+    if(!adc_timeToRunDelayFunction)(*ADC_DelayFunction)();
   }
 }
 
