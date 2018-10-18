@@ -40,7 +40,7 @@ void BUTTON_Manager(void)
   
   switch(buttonData.currentState)
   {
-  case NO_BUTTON_PRESSED:
+  /*case NO_BUTTON_PRESSED:
     if (buttonData.prevState == B_BUTTON_PRESSED)
     {
       ENGC_ChangeState(ENGC_B_END_MOVE);
@@ -50,18 +50,17 @@ void BUTTON_Manager(void)
       ENGC_ChangeState(ENGC_F_END_MOVE);
     }
     BUTTON_SetPrevState();
-    break;
+    break;*/
     
   case F_BUTTON_PRESSED:
     ENGC_ChangeState(ENGC_F_START_MOVE);
-    BUTTON_SetPrevState();
     break;
     
   case B_BUTTON_PRESSED:
-    ENGC_ChangeState(ENGC_B_START_MOVE);
-    BUTTON_SetPrevState();
+    ENGC_ChangeState(ENGC_B_START_MOVE);;
     break;
 
   default: break;
   }
+  BUTTON_SetPrevState();
 }
