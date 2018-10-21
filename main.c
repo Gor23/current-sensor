@@ -61,8 +61,23 @@ int main( void )
 
 void LED_ledUpdate(void)
 {
-    if(LED_1_STATE) LED_1_OFF;
-    else LED_1_ON;
+    if(engcData.currentState == ENGC_B_BLOCK)
+    {
+      LED_2_OFF;
+      LED_1_ON;
+    }
+    else if(engcData.currentState == ENGC_F_BLOCK)
+    {
+      LED_1_OFF;
+      LED_2_ON;
+    }
+    else
+    {
+          if(LED_1_STATE) LED_1_OFF;
+          else LED_1_ON;
+          if(LED_2_STATE) LED_2_OFF;
+          else LED_2_ON;
+    }  
     timeToRunLedHandler = LED_HANDLER_POLLTIME;
 }
 

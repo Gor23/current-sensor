@@ -55,7 +55,8 @@ uint8_t ENGC_ChangeState (uint8_t newState)
   case ENGC_F_BLOCK:
     if(engcData.currentState == ENGC_F_START_MOVE ||
           engcData.currentState == ENGC_F_MOVE ||
-            engcData.currentState == ENGC_F_END_MOVE)
+            engcData.currentState == ENGC_F_END_MOVE ||
+              engcData.currentState == ENGC_F_FAULT_END_MOVE)
     {
       engcData.currentState = ENGC_F_BLOCK;
     }
@@ -68,7 +69,8 @@ uint8_t ENGC_ChangeState (uint8_t newState)
   case ENGC_B_BLOCK:
     if(engcData.currentState == ENGC_B_START_MOVE ||
       engcData.currentState == ENGC_B_MOVE ||
-        engcData.currentState == ENGC_B_END_MOVE)
+        engcData.currentState == ENGC_B_END_MOVE ||
+          engcData.currentState == ENGC_B_FAULT_END_MOVE)
     {
       engcData.currentState = ENGC_B_BLOCK;
     }
@@ -139,7 +141,7 @@ uint8_t ENGC_ChangeState (uint8_t newState)
        engcData.currentState == ENGC_F_FAULT_END_MOVE)
     {
       engc_TimeToRunFunction = 0;
-      engcData.currentState = ENGC_F_END_MOVE;
+      engcData.currentState = ENGC_F_FAULT_END_MOVE;
     }
     else
     {
@@ -154,7 +156,7 @@ uint8_t ENGC_ChangeState (uint8_t newState)
        engcData.currentState == ENGC_B_FAULT_END_MOVE)
     {
       engc_TimeToRunFunction = 0;
-      engcData.currentState = ENGC_B_END_MOVE;
+      engcData.currentState = ENGC_B_FAULT_END_MOVE;
     }
     else
     {
@@ -294,14 +296,14 @@ void ENGC_StateManager(void)
     REL_2_OFF;
     REL_1_OFF;
     ENGC_SetPrevState();
-    ENGC_ChangeStateWithTimeout(ENGC_STOP, ENGC_BLOCK_POLLTIME);
+    //ENGC_ChangeStateWithTimeout(ENGC_STOP, ENGC_BLOCK_POLLTIME);
     break;
     
    case ENGC_B_BLOCK:
     REL_2_OFF;
     REL_1_OFF;
     ENGC_SetPrevState();
-    ENGC_ChangeStateWithTimeout(ENGC_STOP, ENGC_BLOCK_POLLTIME);
+    //ENGC_ChangeStateWithTimeout(ENGC_STOP, ENGC_BLOCK_POLLTIME);
     break;
     
    case ENGC_STOP:

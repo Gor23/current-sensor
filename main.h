@@ -17,6 +17,7 @@
 
 #define LED_2_ON      PC_ODR_ODR7=1
 #define LED_2_OFF     PC_ODR_ODR7=0
+#define LED_2_STATE   PC_IDR_IDR7
 
 #define LED_1_ON      PD_ODR_ODR3=1
 #define LED_1_OFF     PD_ODR_ODR3=0
